@@ -1,4 +1,4 @@
-package com.example.daily_java;
+package com.example.daily_java.common;
 /*
  前后端数据交互错误控制msg类
 

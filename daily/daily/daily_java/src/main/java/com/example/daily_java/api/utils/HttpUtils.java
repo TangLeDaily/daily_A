@@ -1,4 +1,4 @@
-package com.ranmaxli.api.utils;
+package com.example.daily_java.api.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

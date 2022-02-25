@@ -1,4 +1,4 @@
-package com.ranmaxli.api.utils;
+package com.example.daily_java.api.utils;
 
 import java.util.*;
 import java.util.regex.Pattern;

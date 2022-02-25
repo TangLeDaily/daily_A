@@ -1,4 +1,4 @@
-package com.ranmaxli.api.utils;
+package com.example.daily_java.api.utils;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;

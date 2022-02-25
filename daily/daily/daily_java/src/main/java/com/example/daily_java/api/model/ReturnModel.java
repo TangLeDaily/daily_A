@@ -1,4 +1,4 @@
-package com.ranmaxli.api.model;
+package com.example.daily_java.api.model;
 
 import java.io.Serializable;
 

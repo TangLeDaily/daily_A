@@ -1,4 +1,4 @@
-package com.ranmaxli.api.utils;
+package com.example.daily_java.api.utils;
 
 /**
  * Created by liran on 2017/5/27.

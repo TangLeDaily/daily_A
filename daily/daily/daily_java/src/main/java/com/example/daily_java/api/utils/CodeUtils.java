@@ -1,4 +1,4 @@
-package com.ranmaxli.api.utils;
+package com.example.daily_java.api.utils;
 
 import sun.misc.BASE64Encoder;
 
