@@ -15,11 +15,13 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  data(){
+    return{
+      drawer: false
+    }
+  }
 }
-
-import { ref } from 'vue'
-const drawer = ref(false)
 
 </script>
 
