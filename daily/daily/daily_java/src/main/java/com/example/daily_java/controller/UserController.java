@@ -23,13 +23,10 @@ public class UserController {
     @PostMapping
     @ResponseBody
     @RequestMapping("/login")
-    public ReturnModel userLogin(@RequestBody JSONObject jsonObject) throws JSONException {
+    public ReturnModel userLogin(@RequestBody User user) throws JSONException {
 
-        String username = jsonObject.getString("username");
-        String password = jsonObject.getString("password");
-        if(true){
-            return new ReturnModel(-1,username,password);
-        }
+        String username = user.getUsername();
+        String password = user.getPassword();
         if(StringUtil.isNullOrEmpty(username)){
             return new ReturnModel(CommonCode.FAIL_CODE, CommonCode.EMPTY_DATA, CommonCode.MISSING_PARAM_MSG);
         }
