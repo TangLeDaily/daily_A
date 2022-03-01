@@ -15,6 +15,15 @@ public class User {
     private Integer phone_number;
     private String email;
     private String name;
+    private String profilePicture;
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 
     public Integer getId() {
         return id;
@@ -63,4 +72,6 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

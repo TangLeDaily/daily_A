@@ -3,7 +3,7 @@
 <mapper namespace="com.example.daily_java.mapper.UserMapper">
     <select id="userLogin" resultType="com.example.daily_java.entity.User">
 --         select * from user
-        select id,username,password,phone_number,email,name from `user`
+        select id,username,password,phone_number,email,name,profilePicture from `user`
         where username = #{username} and password = #{password}
     </select>
 </mapper>
