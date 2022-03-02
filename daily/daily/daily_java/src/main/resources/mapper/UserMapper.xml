@@ -2,8 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.daily_java.mapper.UserMapper">
     <select id="userLogin" resultType="com.example.daily_java.entity.User">
---         select * from user
-        select id,username,password,phone_number,email,name,profilePicture from `user`
+        select username,password,phone_number,email,name,profilePicture from `user`
         where username = #{username} and password = #{password}
     </select>
+    <insert id="saveCode">
+        insert email_check (email,code)
+            values(#{email},#{code})
+            ON DUPLICATE KEY UPDATE email=values(email),code=values(code);
+    </insert>
+    <select id="checkCode" resultType="String">
+        select code from `email_check`
+        where email = #{email}
+    </select>
+    <select id="checkUser" resultType="String">
+        select username from `user`
+        where username = #{username}
+    </select>
+    <insert id="register">
+        insert into  user (username,password,name,email,phone_number,profilePicture)
+            values(#{username},#{password},#{name},#{email},#{phone_number},#{profilePicture})
+    </insert>
 </mapper>

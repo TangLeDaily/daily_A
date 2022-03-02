@@ -8,4 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public interface UserService {
     public User userLogin(String username, String password);
+    public boolean sendCode(String email, String code);
+    public boolean checkCode(String email, String code);
+    public boolean register(User user);
+    public boolean checkUser(String username);
 }

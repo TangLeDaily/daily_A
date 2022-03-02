@@ -3,6 +3,7 @@ package com.example.daily_java.controller;
 import com.example.daily_java.api.code.CommonCode;
 import com.example.daily_java.api.model.ReturnModel;
 import com.example.daily_java.api.utils.StringUtil;
+import com.example.daily_java.entity.EmailCode;
 import com.example.daily_java.entity.User;
 import com.example.daily_java.service.UserService;
 import org.json.JSONException;
@@ -67,6 +68,15 @@ public class UserController {
         }
         return decryptedData;
     }
+    //获取随机code
+    public static String getRandomCode(){
+        int num=0;
+        for(int i=0;i<6;i++){
+            num = num*10 + (int)(Math.random()*10+1);
+        }
+        return num + "";
+    }
+
 
     @PostMapping
     @ResponseBody
@@ -87,5 +97,69 @@ public class UserController {
             return new ReturnModel(CommonCode.NO_FOUND_USER_CODE,CommonCode.EMPTY_DATA,CommonCode.NO_FOUND_USER_MSG);
         }
         return new ReturnModel(CommonCode.SUCCESS_CODE, users, CommonCode.SUCCESS_MSG);
+    }
+
+    @ResponseBody
+    @RequestMapping("/getCode")
+    public ReturnModel getCode(@RequestBody String email) throws JSONException {
+
+        if(StringUtil.isNullOrEmpty(email)){
+            return new ReturnModel(CommonCode.FAIL_CODE, CommonCode.EMPTY_DATA, CommonCode.MISSING_PARAM_MSG);
+        }
+        boolean is_true = userService.sendCode(email, getRandomCode());
+        if(is_true){
+            return new ReturnModel(CommonCode.SUCCESS_CODE, "success", CommonCode.SUCCESS_MSG);
+        }
+        else{
+            return new ReturnModel(CommonCode.FAIL_CODE, "failed", CommonCode.MISSING_PARAM_MSG);
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/checkUser")
+    public ReturnModel checkUser(@RequestBody String username) throws JSONException {
+
+        if(StringUtil.isNullOrEmpty(username)){
+            return new ReturnModel(CommonCode.FAIL_CODE, CommonCode.EMPTY_DATA, CommonCode.MISSING_PARAM_MSG);
+        }
+        boolean is_true = userService.checkUser(username);
+        if(is_true){
+            return new ReturnModel(CommonCode.SUCCESS_CODE, "success", CommonCode.SUCCESS_MSG);
+        }
+        else{
+            return new ReturnModel(CommonCode.FAIL_CODE, "failed", CommonCode.MISSING_PARAM_MSG);
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/checkCode")
+    public ReturnModel checkCode(@RequestBody EmailCode email_code) throws JSONException {
+
+        if(StringUtil.isNullOrEmpty(email_code.getCode())){
+            return new ReturnModel(CommonCode.FAIL_CODE, "eeeee"/*CommonCode.EMPTY_DATA*/, CommonCode.MISSING_PARAM_MSG);
+        }
+        boolean is_true = userService.checkCode(email_code.getEmail(), email_code.getCode());
+        if(is_true){
+            return new ReturnModel(CommonCode.SUCCESS_CODE, "success", CommonCode.SUCCESS_MSG);
+        }
+        else{
+            return new ReturnModel(CommonCode.FAIL_CODE, "failed", CommonCode.MISSING_PARAM_MSG);
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/register")
+    public ReturnModel register(@RequestBody User user) throws JSONException {
+
+        if(StringUtil.isNullOrEmpty(user.getUsername())){
+            return new ReturnModel(CommonCode.FAIL_CODE, "eeeee"/*CommonCode.EMPTY_DATA*/, CommonCode.MISSING_PARAM_MSG);
+        }
+        boolean is_true = userService.register(user);
+        if(is_true){
+            return new ReturnModel(CommonCode.SUCCESS_CODE, "success", CommonCode.SUCCESS_MSG);
+        }
+        else{
+            return new ReturnModel(CommonCode.FAIL_CODE, "failed", CommonCode.MISSING_PARAM_MSG);
+        }
     }
 }
