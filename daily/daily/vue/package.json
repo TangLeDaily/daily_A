@@ -22,7 +22,9 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "babel-plugin-import": "^1.13.3"
+    "amfe-flexible": "^2.2.1",
+    "babel-plugin-import": "^1.13.3",
+    "postcss-pxtorem": "^6.0.0"
   },
   "browserslist": [
     "> 1%",

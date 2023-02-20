@@ -12,4 +12,6 @@ public interface UserService {
     public boolean checkCode(String email, String code);
     public boolean register(User user);
     public boolean checkUser(String username);
+    public boolean checkReal(String username, String email);
+    public boolean chongZhi(String username, String password);
 }

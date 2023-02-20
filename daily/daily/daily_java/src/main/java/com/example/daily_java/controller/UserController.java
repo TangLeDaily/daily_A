@@ -17,8 +17,11 @@ import javax.crypto.spec.DESKeySpec;
 import java.security.SecureRandom;
 import java.util.Random;
 
+
+
 @RestController
-@RequestMapping("/user")
+@CrossOrigin
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
@@ -100,6 +103,29 @@ public class UserController {
     }
 
     @ResponseBody
+    @RequestMapping("/checkReal")
+    public ReturnModel checkReal(@RequestBody User user) throws JSONException {
+
+        String username = user.getUsername();
+        String email = user.getEmail();
+        if(StringUtil.isNullOrEmpty(username)){
+            return new ReturnModel(CommonCode.FAIL_CODE, CommonCode.EMPTY_DATA, CommonCode.MISSING_PARAM_MSG);
+        }
+        if(StringUtil.isNullOrEmpty(email)){
+            return new ReturnModel(CommonCode.FAIL_CODE, CommonCode.EMPTY_DATA, CommonCode.MISSING_PARAM_MSG);
+        }
+        //deal service
+        boolean is_real = userService.checkReal(username,email);
+        if(is_real){
+            return new ReturnModel(CommonCode.SUCCESS_CODE, CommonCode.EMPTY_DATA, CommonCode.SUCCESS_MSG);
+
+        }
+        else{
+            return new ReturnModel(CommonCode.NO_FOUND_USER_CODE,CommonCode.EMPTY_DATA,CommonCode.NO_FOUND_USER_MSG);
+        }
+    }
+
+    @ResponseBody
     @RequestMapping("/getCode")
     public ReturnModel getCode(@RequestBody String email) throws JSONException {
 
@@ -155,6 +181,23 @@ public class UserController {
             return new ReturnModel(CommonCode.FAIL_CODE, "eeeee"/*CommonCode.EMPTY_DATA*/, CommonCode.MISSING_PARAM_MSG);
         }
         boolean is_true = userService.register(user);
+        if(is_true){
+            return new ReturnModel(CommonCode.SUCCESS_CODE, "success", CommonCode.SUCCESS_MSG);
+        }
+        else{
+            return new ReturnModel(CommonCode.FAIL_CODE, "failed", CommonCode.MISSING_PARAM_MSG);
+        }
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/chongZhi")
+    public ReturnModel chongZhi(@RequestBody User user) throws JSONException {
+
+        if(StringUtil.isNullOrEmpty(user.getUsername())){
+            return new ReturnModel(CommonCode.FAIL_CODE, "eeeee"/*CommonCode.EMPTY_DATA*/, CommonCode.MISSING_PARAM_MSG);
+        }
+        boolean is_true = userService.chongZhi(user.getUsername(), user.getPassword());
         if(is_true){
             return new ReturnModel(CommonCode.SUCCESS_CODE, "success", CommonCode.SUCCESS_MSG);
         }

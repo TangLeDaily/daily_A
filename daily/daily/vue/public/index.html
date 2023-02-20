@@ -3,9 +3,32 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+      <script>
+          (function () {
+              // 在标准 375px 适配下，100px = 1rem;
+              var baseFontSize = 360;
+              var baseWidth = 375;
+
+              var set = function () {
+                  var clientWidth = document.documentElement.clientWidth || window.innerWidth;
+
+                  var rem = 100;
+                  if (clientWidth != baseWidth) {
+                      rem = Math.floor(clientWidth / baseWidth * baseFontSize);
+                  }
+
+                  document.querySelector('html').style.fontSize = rem + 'px';
+              }
+              set();
+
+              window.addEventListener('resize', set);
+          }());
+
+      </script>
   </head>
   <body>
     <noscript>
@@ -15,3 +38,4 @@
     <!-- built files will be auto injected -->
   </body>
 </html>
+

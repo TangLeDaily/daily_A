@@ -1,0 +1,19 @@
+<!doctype html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon.ico"><title>vue</title><script>(function () {
+              // 在标准 375px 适配下，100px = 1rem;
+              var baseFontSize = 360;
+              var baseWidth = 375;
+
+              var set = function () {
+                  var clientWidth = document.documentElement.clientWidth || window.innerWidth;
+
+                  var rem = 100;
+                  if (clientWidth != baseWidth) {
+                      rem = Math.floor(clientWidth / baseWidth * baseFontSize);
+                  }
+
+                  document.querySelector('html').style.fontSize = rem + 'px';
+              }
+              set();
+
+              window.addEventListener('resize', set);
+          }());</script><script defer="defer" src="/js/chunk-vendors.b7245283.js"></script><script defer="defer" src="/js/app.f07d07f6.js"></script><link href="/css/chunk-vendors.b04a47e7.css" rel="stylesheet"><link href="/css/app.4cd5c09f.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but vue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div></body></html>

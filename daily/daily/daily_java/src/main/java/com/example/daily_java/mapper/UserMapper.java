@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper{
 
     User userLogin(@Param("username") String username, @Param("password")String password);
+    User checkReal(@Param("username") String username, @Param("email")String email);
     void saveCode(@Param("email") String email, @Param("code") String code);
     String checkCode(@Param("email") String email);
     String checkUser(@Param("username") String username);
@@ -20,5 +21,6 @@ public interface UserMapper{
             @Param("phone_number") double phone_number,
             @Param("profilePicture") String profilePicture
             );
+    void chongZhi(@Param("username") String username, @Param("password")String password);
    // return userLogin;
 }

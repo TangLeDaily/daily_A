@@ -26,6 +26,8 @@ public class MailUtils {
      * @param mailConfig 发件人信息及授权
      */
     public void sendMail(Boolean isSingle, MailVo mailVo, Date sendTime, CmsMailConfig mailConfig) throws MessagingException {
+
+
         Session session = this.authenticationMail();
         MimeMessage message = getMimeMessage(isSingle, session, mailConfig.getMailAccount(), mailVo.getRecipients());
         message = getContent(message, mailVo.getMailTiTle(), mailVo.getMailContent(), sendTime);
@@ -66,6 +68,11 @@ public class MailUtils {
             props.setProperty("mail.transport.protocol", "smtp");
             //设置发件人的SMTP服务器地址
             props.setProperty("mail.smtp.host", "smtp.163.com");
+            //邮箱发送服务器端口,这里设置为465端口
+            props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            props.setProperty("mail.smtp.auth", "true");
+            props.setProperty("mail.smtp.port", "465");
+            props.setProperty("mail.smtp.socketFactory.port", "465");
             session = Session.getInstance(props);
             session.setDebug(true);
         } catch (Exception e) {

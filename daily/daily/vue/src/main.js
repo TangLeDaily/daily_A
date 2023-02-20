@@ -1,10 +1,14 @@
 import { createApp } from 'vue'
-
+import 'amfe-flexible';
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'element-plus/dist/index.css'
-import '@/assets/css/global.css'
+// import '@/assets/css/global.css'
+// import '@/assets/css/boder.css'
+// import '@/assets/css/rest.css'
+import 'lib-flexible'
+// import '@/assets/css/rem'
 import { getCookie, setCookie, delCookie } from './utils/cookie'
 
 //Vue.use(VueCookies)

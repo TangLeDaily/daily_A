@@ -4,16 +4,34 @@ const { defineConfig } = require('@vue/cli-service')
 // })
 // 跨域配置
 module.exports = {
+  publicPath: '/',
+  outputDir: 'daily_vue',
   devServer: {                //记住，别写错了devServer//设置本地默认端口  选填
-    port: 8070,
+    port: 8071,
     proxy: {                 //设置代理，必须填
       '/api': {              //设置拦截器  拦截器格式   斜杠+拦截器名字，名字可以自己定
-        target: 'http://localhost:8060',     //代理的目标地址
-        changeOrigin: true,              //是否设置同源，输入是的
+        //target: "http://" + window.server.serverJavaUrl + ":8060",
+        target: 'http://localhost:8060/api',     //代理的目标地址
+        changeOrigin: false,              //是否设置同源，输入是的
         pathRewrite: {                   //路径重写
           '^/api': ''                     //选择忽略拦截器里面的内容
         }
       }
     }
-  }
+  },
+  // chainWebpack: config => {
+  //   config.module
+  //       .rule('css')
+  //       .test(/\.css$/)
+  //       .oneOf('vue')
+  //       .resourceQuery(/\?vue/)
+  //       .use('px2rem')
+  //       .loader('px2rem-loader')
+  //       .options({
+  //         remUnit: 75
+  //       })
+  // },
+
+
+
 }

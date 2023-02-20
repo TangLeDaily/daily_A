@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "lib-flexible": "^0.3.2",
+    "postcss-px2rem": "^0.3.0",
+    "px2rem-loader": "^0.1.9"
+  },
+  "devDependencies": {
+    "postcss-pxtorem": "^6.0.0"
+  }
+}

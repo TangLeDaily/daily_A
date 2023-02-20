@@ -20,7 +20,16 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.userLogin(username,password);
         return user;
     }
-
+    @Override
+    public boolean checkReal(String username, String email){
+        User user = userMapper.checkReal(username, email);
+        if (user == null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     @Override
     public boolean sendCode(String email, String code){
         String content = "DailySpace邮箱验证码如下："+code+"<br>如果这不是你所申请的内容，请忽略本邮件";
@@ -59,6 +68,11 @@ public class UserServiceImpl implements UserService {
                 user.getEmail(),
                 user.getPhone_number(),
                 user.getProfilePicture());
+        return true;
+    }
+    @Override
+    public boolean chongZhi(String username, String password){
+        userMapper.chongZhi(username, password);
         return true;
     }
 

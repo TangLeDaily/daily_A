@@ -5,6 +5,10 @@
         select username,password,phone_number,email,name,profilePicture from `user`
         where username = #{username} and password = #{password}
     </select>
+    <select id="checkReal" resultType="com.example.daily_java.entity.User">
+        select username,password,phone_number,email,name,profilePicture from `user`
+        where username = #{username} and email = #{email}
+    </select>
     <insert id="saveCode">
         insert email_check (email,code)
             values(#{email},#{code})
@@ -22,4 +26,10 @@
         insert into  user (username,password,name,email,phone_number,profilePicture)
             values(#{username},#{password},#{name},#{email},#{phone_number},#{profilePicture})
     </insert>
+    <update id="chongZhi">
+        update user
+        set password = #{password}
+        where username = #{username}
+    </update>
+
 </mapper>

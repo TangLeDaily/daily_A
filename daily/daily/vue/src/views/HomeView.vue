@@ -1,9 +1,12 @@
 <template>
-  <div class="home">
-    HOME
+  <div>
+    <el-button @click="showLogin()" style="width: 3rem;color: chocolate" >login</el-button>
+  </div>
+  <div><el-button @click="showLogin()" style="width: 15rem;color: chocolate" >login</el-button></div>
+    <div><el-button @click="showLogin()" style="width: 48px;color: chocolate" >login</el-button></div>
+    <div><el-button @click="showLogin()" style="width: 196px;color: chocolate" >login</el-button></div>
 
-    <el-button @click="showLogin()">login</el-button>
-    <el-dialog title="登录" v-model="loginVisible" width="24rem" center="true">
+    <el-dialog title="登录" v-model="loginVisible" width="500px" center="true">
       <el-form :model="form" label-width="5rem" label-position="right">
         <el-form-item label="用户名">
           <el-input v-model="form.username" style="width: 12rem"></el-input>
@@ -20,7 +23,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-  </div>
+
 </template>
 
 <script>
